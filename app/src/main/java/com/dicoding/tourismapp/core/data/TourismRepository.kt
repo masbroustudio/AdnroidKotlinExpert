@@ -29,18 +29,23 @@ class TourismRepository private constructor(
             }
     }
 
+    // TODO : Resource yang berfungsi untuk membungkus data dan statusnya
     fun getAllTourism(): LiveData<Resource<List<TourismEntity>>> =
         object : NetworkBoundResource<List<TourismEntity>, List<TourismResponse>>(appExecutors) {
+            // TODO : Saat aplikasi dijalankan, sistem akan mengecek data pada local menggunakan method
             override fun loadFromDB(): LiveData<List<TourismEntity>> {
                 return localDataSource.getAllTourism()
             }
 
+            // TODO : menentukan kapan bisa mengambil data dari remote pada method
             override fun shouldFetch(data: List<TourismEntity>?): Boolean =
                 data == null || data.isEmpty()
 
+            // TODO : Ketika data pada local kosong, maka aplikasi akan mengambil data dari remote
             override fun createCall(): LiveData<ApiResponse<List<TourismResponse>>> =
                 remoteDataSource.getAllTourism()
 
+            // TODO : menyimpannya ke dalam local menggunakan method
             override fun saveCallResult(data: List<TourismResponse>) {
                 val tourismList = DataMapper.mapResponsesToEntities(data)
                 localDataSource.insertTourism(tourismList)
