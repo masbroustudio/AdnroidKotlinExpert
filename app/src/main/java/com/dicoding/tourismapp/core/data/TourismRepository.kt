@@ -11,6 +11,7 @@ import com.dicoding.tourismapp.core.domain.model.Tourism
 import com.dicoding.tourismapp.core.domain.repository.ITourismRepository
 import com.dicoding.tourismapp.core.utils.AppExecutors
 import com.dicoding.tourismapp.core.utils.DataMapper
+import java.security.KeyStore.TrustedCertificateEntry
 
 class TourismRepository private constructor(
     private val remoteDataSource: RemoteDataSource,
@@ -45,7 +46,11 @@ class TourismRepository private constructor(
 
             // TODO : menentukan kapan bisa mengambil data dari remote pada method
             override fun shouldFetch(data: List<Tourism>?): Boolean =
-                data == null || data.isEmpty()
+//                data == null || data.isEmpty()
+                true // ganti dengan true jika ingin selalu mengambil data dari internet
+
+            // TODO : ganti dengan true jika ingin selalu mengambil data dari internet
+
 
             // TODO : Ketika data pada local kosong, maka aplikasi akan mengambil data dari remote
             override fun createCall(): LiveData<ApiResponse<List<TourismResponse>>> =
@@ -69,6 +74,8 @@ class TourismRepository private constructor(
 //        appExecutors.diskIO().execute { localDataSource.setFavoriteTourism(tourism, state) }
         val tourismEntity = DataMapper.mapDomainToEntity(tourism)
         appExecutors.diskIO().execute { localDataSource.setFavoriteTourism(tourismEntity, state) }
+
+        // TODO : Kode di atas digunakan untuk mengubah Domain Model menjadi Entity Model (Room). Cukup dengan memanggil langsung fungsi mapDomainToEntity yang ada di dalam Object DataMapper.
     }
 }
 
