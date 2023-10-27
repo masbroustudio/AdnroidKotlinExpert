@@ -1,3 +1,4 @@
 include ':core'
 rootProject.name='Kopilkasi V2'
 include ':app'
+include ':maps'
