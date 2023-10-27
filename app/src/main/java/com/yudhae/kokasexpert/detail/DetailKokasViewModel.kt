@@ -5,7 +5,7 @@ import com.yudhae.kokasexpert.core.domain.model.Kokas
 import com.yudhae.kokasexpert.core.domain.usecase.KokasUseCase
 
 class DetailKokasViewModel(private val kokasUseCase: KokasUseCase) : ViewModel() {
-    fun setFavoriteKokas(kokas: Kokas, newStatus:Boolean) =
+    fun setFavoriteKokas(kokas: Kokas, newStatus: Boolean) =
         kokasUseCase.setFavoriteKokas(kokas, newStatus)
 }
 

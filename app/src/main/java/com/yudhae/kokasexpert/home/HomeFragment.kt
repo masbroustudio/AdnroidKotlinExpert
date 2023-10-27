@@ -49,10 +49,12 @@ class HomeFragment : Fragment() {
                             binding.progressBar.visibility = View.GONE
                             kokasAdapter.setData(kokas.data)
                         }
+
                         is Resource.Error -> {
                             binding.progressBar.visibility = View.GONE
                             binding.viewError.root.visibility = View.VISIBLE
-                            binding.viewError.tvError.text = kokas.message ?: getString(R.string.something_wrong)
+                            binding.viewError.tvError.text =
+                                kokas.message ?: getString(R.string.something_wrong)
                         }
                     }
                 }

@@ -25,14 +25,15 @@ class MapsActivity : AppCompatActivity() {
         getKokasData()
     }
     private fun getKokasData() {
-        mapsViewModel.kokas.observe(this, { kokas ->
+        mapsViewModel.kokas.observe(this) { kokas ->
             if (kokas != null) {
                 when (kokas) {
                     is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
                     is Resource.Success -> {
                         binding.progressBar.visibility = View.GONE
-                        binding.tvMaps.text = "This is map of ${kokas.data?.get(0)?.name}"
+                        binding.tvMaps.text = "This is map of ${kokas.data?.get(3)?.name}"
                     }
+
                     is Resource.Error -> {
                         binding.progressBar.visibility = View.GONE
                         binding.tvError.visibility = View.VISIBLE
@@ -40,6 +41,6 @@ class MapsActivity : AppCompatActivity() {
                     }
                 }
             }
-        })
+        }
     }
 }

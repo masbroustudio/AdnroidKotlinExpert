@@ -41,7 +41,8 @@ class FavoriteFragment : Fragment() {
 
             favoriteViewModel.favoriteKokas.observe(viewLifecycleOwner, { dataKokas ->
                 kokasAdapter.setData(dataKokas)
-                binding.viewEmpty.root.visibility = if (dataKokas.isNotEmpty()) View.GONE else View.VISIBLE
+                binding.viewEmpty.root.visibility =
+                    if (dataKokas.isNotEmpty()) View.GONE else View.VISIBLE
             })
 
             with(binding.rvKokas) {
