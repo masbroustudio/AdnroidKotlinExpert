@@ -1,8 +1,8 @@
 package com.dicoding.tourismapp.favorite
 
 import androidx.lifecycle.ViewModel
-import com.dicoding.tourismapp.core.domain.usecase.TourismUseCase
+import com.dicoding.tourismapp.core.domain.usecase.KokasUseCase
 
-class FavoriteViewModel(tourismUseCase: TourismUseCase) : ViewModel() {
-    val favoriteTourism = tourismUseCase.getFavoriteTourism()
+class FavoriteViewModel(kokasUseCase: KokasUseCase) : ViewModel() {
+    val favoriteTourism = kokasUseCase.getFavoriteTourism()
 }

@@ -6,15 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.tourismapp.R
 import com.dicoding.tourismapp.core.data.Resource
-import com.dicoding.tourismapp.core.ui.TourismAdapter
+import com.dicoding.tourismapp.core.ui.KokasAdapter
 import com.dicoding.tourismapp.core.ui.ViewModelFactory
 import com.dicoding.tourismapp.databinding.FragmentHomeBinding
-import com.dicoding.tourismapp.detail.DetailTourismActivity
+import com.dicoding.tourismapp.detail.DetailKokasActivity
 
 class HomeFragment : Fragment() {
 
@@ -36,28 +35,28 @@ class HomeFragment : Fragment() {
 
         if (activity != null) {
 
-            val tourismAdapter = TourismAdapter()
-            tourismAdapter.onItemClick = { selectedData ->
-                val intent = Intent(activity, DetailTourismActivity::class.java)
-                intent.putExtra(DetailTourismActivity.EXTRA_DATA, selectedData)
+            val kokasAdapter = KokasAdapter()
+            kokasAdapter.onItemClick = { selectedData ->
+                val intent = Intent(activity, DetailKokasActivity::class.java)
+                intent.putExtra(DetailKokasActivity.EXTRA_DATA, selectedData)
                 startActivity(intent)
             }
 
             val factory = ViewModelFactory.getInstance(requireActivity())
             homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
 
-            homeViewModel.tourism.observe(viewLifecycleOwner, { tourism ->
-                if (tourism != null) {
-                    when (tourism) {
+            homeViewModel.kokas.observe(viewLifecycleOwner, { kokas ->
+                if (kokas != null) {
+                    when (kokas) {
                         is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
                         is Resource.Success -> {
                             binding.progressBar.visibility = View.GONE
-                            tourismAdapter.setData(tourism.data)
+                            kokasAdapter.setData(kokas.data)
                         }
                         is Resource.Error -> {
                             binding.progressBar.visibility = View.GONE
                             binding.viewError.root.visibility = View.VISIBLE
-                            binding.viewError.tvError.text = tourism.message ?: getString(R.string.something_wrong)
+                            binding.viewError.tvError.text = kokas.message ?: getString(R.string.something_wrong)
                         }
                     }
                 }
@@ -66,7 +65,7 @@ class HomeFragment : Fragment() {
             with(binding.rvTourism) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
-                adapter = tourismAdapter
+                adapter = kokasAdapter
             }
         }
     }

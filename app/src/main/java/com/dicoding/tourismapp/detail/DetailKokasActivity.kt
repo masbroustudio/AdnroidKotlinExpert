@@ -6,17 +6,17 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.dicoding.tourismapp.R
-import com.dicoding.tourismapp.core.domain.model.Tourism
+import com.dicoding.tourismapp.core.domain.model.Kokas
 import com.dicoding.tourismapp.core.ui.ViewModelFactory
 import com.dicoding.tourismapp.databinding.ActivityDetailTourismBinding
 
-class DetailTourismActivity : AppCompatActivity() {
+class DetailKokasActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_DATA = "extra_data"
     }
 
-    private lateinit var detailTourismViewModel: DetailTourismViewModel
+    private lateinit var detailKokasViewModel: DetailKokasViewModel
     private lateinit var binding: ActivityDetailTourismBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,17 +27,17 @@ class DetailTourismActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
 
         val factory = ViewModelFactory.getInstance(this)
-        detailTourismViewModel = ViewModelProvider(this, factory)[DetailTourismViewModel::class.java]
+        detailKokasViewModel = ViewModelProvider(this, factory)[DetailKokasViewModel::class.java]
 
-        val detailTourism = intent.getParcelableExtra<Tourism>(EXTRA_DATA)
+        val detailTourism = intent.getParcelableExtra<Kokas>(EXTRA_DATA)
         showDetailTourism(detailTourism)
     }
 
-    private fun showDetailTourism(detailTourism: Tourism?) {
+    private fun showDetailTourism(detailTourism: Kokas?) {
         detailTourism?.let {
             supportActionBar?.title = detailTourism.title
             binding.content.tvDetailDescription.text = detailTourism.description
-            Glide.with(this@DetailTourismActivity)
+            Glide.with(this@DetailKokasActivity)
                 .load(detailTourism.image)
                 .into(binding.ivDetailImage)
 
@@ -45,7 +45,7 @@ class DetailTourismActivity : AppCompatActivity() {
             setStatusFavorite(statusFavorite)
             binding.fab.setOnClickListener {
                 statusFavorite = !statusFavorite
-                detailTourismViewModel.setFavoriteTourism(detailTourism, statusFavorite)
+                detailKokasViewModel.setFavoriteTourism(detailTourism, statusFavorite)
                 setStatusFavorite(statusFavorite)
             }
         }

@@ -58,11 +58,13 @@ abstract class NetworkBoundResource<ResultType, RequestType>(private val mExecut
                             }
                         }
                     }
+
                 is ApiResponse.Empty -> mExecutors.mainThread().execute {
                     result.addSource(loadFromDB()) { newData ->
                         result.value = Resource.Success(newData)
                     }
                 }
+
                 is ApiResponse.Error -> {
                     onFetchFailed()
                     result.addSource(dbSource) { newData ->

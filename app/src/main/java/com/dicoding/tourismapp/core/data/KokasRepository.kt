@@ -5,60 +5,60 @@ import androidx.lifecycle.Transformations
 import com.dicoding.tourismapp.core.data.source.local.LocalDataSource
 import com.dicoding.tourismapp.core.data.source.remote.RemoteDataSource
 import com.dicoding.tourismapp.core.data.source.remote.network.ApiResponse
-import com.dicoding.tourismapp.core.data.source.remote.response.TourismResponse
-import com.dicoding.tourismapp.core.domain.model.Tourism
-import com.dicoding.tourismapp.core.domain.repository.ITourismRepository
+import com.dicoding.tourismapp.core.data.source.remote.response.KokasResponse
+import com.dicoding.tourismapp.core.domain.model.Kokas
+import com.dicoding.tourismapp.core.domain.repository.IKokasRepository
 import com.dicoding.tourismapp.core.utils.AppExecutors
 import com.dicoding.tourismapp.core.utils.DataMapper
 
-class TourismRepository private constructor(
+class KokasRepository private constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
-) : ITourismRepository {
+) : IKokasRepository {
 
     companion object {
         @Volatile
-        private var instance: TourismRepository? = null
+        private var instance: KokasRepository? = null
 
         fun getInstance(
             remoteData: RemoteDataSource,
             localData: LocalDataSource,
             appExecutors: AppExecutors
-        ): TourismRepository =
+        ): KokasRepository =
             instance ?: synchronized(this) {
-                instance ?: TourismRepository(remoteData, localData, appExecutors)
+                instance ?: KokasRepository(remoteData, localData, appExecutors)
             }
     }
 
-    override fun getAllTourism(): LiveData<Resource<List<Tourism>>> =
-        object : NetworkBoundResource<List<Tourism>, List<TourismResponse>>(appExecutors) {
-            override fun loadFromDB(): LiveData<List<Tourism>> {
+    override fun getAllTourism(): LiveData<Resource<List<Kokas>>> =
+        object : NetworkBoundResource<List<Kokas>, List<KokasResponse>>(appExecutors) {
+            override fun loadFromDB(): LiveData<List<Kokas>> {
                 return Transformations.map(localDataSource.getAllTourism()) {
                     DataMapper.mapEntitiesToDomain(it)
                 }
             }
 
-            override fun shouldFetch(data: List<Tourism>?): Boolean =
+            override fun shouldFetch(data: List<Kokas>?): Boolean =
                 data == null || data.isEmpty()
 
-            override fun createCall(): LiveData<ApiResponse<List<TourismResponse>>> =
+            override fun createCall(): LiveData<ApiResponse<List<KokasResponse>>> =
                 remoteDataSource.getAllTourism()
 
-            override fun saveCallResult(data: List<TourismResponse>) {
+            override fun saveCallResult(data: List<KokasResponse>) {
                 val tourismList = DataMapper.mapResponsesToEntities(data)
                 localDataSource.insertTourism(tourismList)
             }
         }.asLiveData()
 
-    override fun getFavoriteTourism(): LiveData<List<Tourism>> {
+    override fun getFavoriteTourism(): LiveData<List<Kokas>> {
         return Transformations.map(localDataSource.getFavoriteTourism()) {
             DataMapper.mapEntitiesToDomain(it)
         }
     }
 
-    override fun setFavoriteTourism(tourism: Tourism, state: Boolean) {
-        val tourismEntity = DataMapper.mapDomainToEntity(tourism)
+    override fun setFavoriteTourism(kokas: Kokas, state: Boolean) {
+        val tourismEntity = DataMapper.mapDomainToEntity(kokas)
         appExecutors.diskIO().execute { localDataSource.setFavoriteTourism(tourismEntity, state) }
     }
 }

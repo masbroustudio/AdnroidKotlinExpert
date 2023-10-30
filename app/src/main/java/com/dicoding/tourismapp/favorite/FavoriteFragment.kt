@@ -6,13 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.tourismapp.core.ui.TourismAdapter
+import com.dicoding.tourismapp.core.ui.KokasAdapter
 import com.dicoding.tourismapp.core.ui.ViewModelFactory
 import com.dicoding.tourismapp.databinding.FragmentFavoriteBinding
-import com.dicoding.tourismapp.detail.DetailTourismActivity
+import com.dicoding.tourismapp.detail.DetailKokasActivity
 
 class FavoriteFragment : Fragment() {
 
@@ -34,10 +33,10 @@ class FavoriteFragment : Fragment() {
 
         if (activity != null) {
 
-            val tourismAdapter = TourismAdapter()
-            tourismAdapter.onItemClick = { selectedData ->
-                val intent = Intent(activity, DetailTourismActivity::class.java)
-                intent.putExtra(DetailTourismActivity.EXTRA_DATA, selectedData)
+            val kokasAdapter = KokasAdapter()
+            kokasAdapter.onItemClick = { selectedData ->
+                val intent = Intent(activity, DetailKokasActivity::class.java)
+                intent.putExtra(DetailKokasActivity.EXTRA_DATA, selectedData)
                 startActivity(intent)
             }
 
@@ -45,14 +44,14 @@ class FavoriteFragment : Fragment() {
             favoriteViewModel = ViewModelProvider(this, factory)[FavoriteViewModel::class.java]
 
             favoriteViewModel.favoriteTourism.observe(viewLifecycleOwner, { dataTourism ->
-                tourismAdapter.setData(dataTourism)
+                kokasAdapter.setData(dataTourism)
                 binding.viewEmpty.root.visibility = if (dataTourism.isNotEmpty()) View.GONE else View.VISIBLE
             })
 
             with(binding.rvTourism) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
-                adapter = tourismAdapter
+                adapter = kokasAdapter
             }
         }
     }

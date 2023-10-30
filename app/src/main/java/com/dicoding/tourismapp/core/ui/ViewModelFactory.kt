@@ -4,12 +4,12 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.tourismapp.core.di.Injection
-import com.dicoding.tourismapp.core.domain.usecase.TourismUseCase
-import com.dicoding.tourismapp.detail.DetailTourismViewModel
+import com.dicoding.tourismapp.core.domain.usecase.KokasUseCase
+import com.dicoding.tourismapp.detail.DetailKokasViewModel
 import com.dicoding.tourismapp.favorite.FavoriteViewModel
 import com.dicoding.tourismapp.home.HomeViewModel
 
-class ViewModelFactory private constructor(private val tourismUseCase: TourismUseCase) :
+class ViewModelFactory private constructor(private val kokasUseCase: KokasUseCase) :
     ViewModelProvider.NewInstanceFactory() {
 
     companion object {
@@ -26,15 +26,15 @@ class ViewModelFactory private constructor(private val tourismUseCase: TourismUs
     override fun <T : ViewModel> create(modelClass: Class<T>): T =
         when {
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
-                HomeViewModel(tourismUseCase) as T
+                HomeViewModel(kokasUseCase) as T
             }
 
             modelClass.isAssignableFrom(FavoriteViewModel::class.java) -> {
-                FavoriteViewModel(tourismUseCase) as T
+                FavoriteViewModel(kokasUseCase) as T
             }
 
-            modelClass.isAssignableFrom(DetailTourismViewModel::class.java) -> {
-                DetailTourismViewModel(tourismUseCase) as T
+            modelClass.isAssignableFrom(DetailKokasViewModel::class.java) -> {
+                DetailKokasViewModel(kokasUseCase) as T
             }
 
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)

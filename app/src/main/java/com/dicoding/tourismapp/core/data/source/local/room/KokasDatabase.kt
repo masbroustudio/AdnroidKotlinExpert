@@ -6,23 +6,23 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-import com.dicoding.tourismapp.core.data.source.local.entity.TourismEntity
+import com.dicoding.tourismapp.core.data.source.local.entity.KokasEntity
 
-@Database(entities = [TourismEntity::class], version = 1, exportSchema = false)
-abstract class TourismDatabase : RoomDatabase() {
+@Database(entities = [KokasEntity::class], version = 1, exportSchema = false)
+abstract class KokasDatabase : RoomDatabase() {
 
-    abstract fun tourismDao(): TourismDao
+    abstract fun tourismDao(): KokasDao
 
     companion object {
         @Volatile
-        private var INSTANCE: TourismDatabase? = null
+        private var INSTANCE: KokasDatabase? = null
 
-        fun getInstance(context: Context): TourismDatabase =
+        fun getInstance(context: Context): KokasDatabase =
             INSTANCE ?: synchronized(this) {
             val instance = Room.databaseBuilder(
                 context.applicationContext,
-                TourismDatabase::class.java,
-                "Tourism.db"
+                KokasDatabase::class.java,
+                "Kokas.db"
             )
                 .fallbackToDestructiveMigration()
                 .build()

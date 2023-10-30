@@ -2,7 +2,7 @@ package com.dicoding.tourismapp.core.utils
 
 import android.content.Context
 import com.dicoding.tourismapp.R
-import com.dicoding.tourismapp.core.data.source.remote.response.TourismResponse
+import com.dicoding.tourismapp.core.data.source.remote.response.KokasResponse
 import org.json.JSONObject
 import java.io.IOException
 
@@ -20,8 +20,8 @@ class JsonHelper(private val context: Context) {
         return jsonString
     }
 
-    fun loadData(): List<TourismResponse> {
-        val list = ArrayList<TourismResponse>()
+    fun loadData(): List<KokasResponse> {
+        val list = ArrayList<KokasResponse>()
         val responseObject = JSONObject(parsingFileToString().toString())
         val listArray = responseObject.getJSONArray("places")
         for (i in 0 until listArray.length()) {
@@ -32,7 +32,7 @@ class JsonHelper(private val context: Context) {
             val description = course.getString("description")
             val image = course.getString("image")
 
-            val courseResponse = TourismResponse(
+            val courseResponse = KokasResponse(
                 id = id,
                 title = name,
                 description = description,

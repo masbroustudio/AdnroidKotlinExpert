@@ -1,15 +1,14 @@
 package com.dicoding.tourismapp.core.data.source.local.entity
 
 import android.os.Parcelable
-import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-@Entity(tableName = "tourism")
-data class TourismEntity(
+@Entity(tableName = "kokas")
+data class KokasEntity(
     @PrimaryKey
     @ColumnInfo(name = "id")
     var id: String,

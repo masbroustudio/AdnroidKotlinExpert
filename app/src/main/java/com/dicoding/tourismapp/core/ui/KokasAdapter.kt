@@ -6,16 +6,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.tourismapp.R
-import com.dicoding.tourismapp.core.domain.model.Tourism
+import com.dicoding.tourismapp.core.domain.model.Kokas
 import com.dicoding.tourismapp.databinding.ItemListTourismBinding
 import java.util.ArrayList
 
-class TourismAdapter : RecyclerView.Adapter<TourismAdapter.ListViewHolder>() {
+class KokasAdapter : RecyclerView.Adapter<KokasAdapter.ListViewHolder>() {
 
-    private var listData = ArrayList<Tourism>()
-    var onItemClick: ((Tourism) -> Unit)? = null
+    private var listData = ArrayList<Kokas>()
+    var onItemClick: ((Kokas) -> Unit)? = null
 
-    fun setData(newListData: List<Tourism>?) {
+    fun setData(newListData: List<Kokas>?) {
         if (newListData == null) return
         listData.clear()
         listData.addAll(newListData)
@@ -34,7 +34,7 @@ class TourismAdapter : RecyclerView.Adapter<TourismAdapter.ListViewHolder>() {
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ItemListTourismBinding.bind(itemView)
-        fun bind(data: Tourism) {
+        fun bind(data: Kokas) {
             with(binding) {
                 Glide.with(itemView.context)
                     .load(data.image)
