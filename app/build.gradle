@@ -9,7 +9,7 @@ android {
     compileSdkVersion 30
 
     defaultConfig {
-        applicationId "com.dicoding.tourismapp"
+        applicationId 'com.yudhae.kokasappstarter'
         minSdkVersion 16
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 30
@@ -41,7 +41,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    namespace 'com.dicoding.tourismapp'
+    namespace 'com.yudhae.kokasappstarter'
 }
 
 dependencies {
