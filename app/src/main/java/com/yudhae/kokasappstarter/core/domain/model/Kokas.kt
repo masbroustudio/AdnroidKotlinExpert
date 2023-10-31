@@ -5,9 +5,10 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Kokas(
-    val id: String,
+    val id: Int,
     val title: String,
     val description: String,
     val image: String,
+    var ingradients: List<String?>,
     val isFavorite: Boolean
 ) : Parcelable

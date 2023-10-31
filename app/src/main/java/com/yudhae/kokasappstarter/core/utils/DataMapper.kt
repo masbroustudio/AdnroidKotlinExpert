@@ -12,6 +12,7 @@ object DataMapper {
                 id = it.id,
                 title = it.title,
                 description = it.description,
+                ingredients = it.ingredients,
                 image = it.image,
                 isFavorite = false
             )
@@ -26,6 +27,7 @@ object DataMapper {
                 id = it.id,
                 title = it.title,
                 description = it.description,
+                ingradients =it.ingredients,
                 image = it.image,
                 isFavorite = it.isFavorite
             )
@@ -35,6 +37,7 @@ object DataMapper {
         id = input.id,
         title = input.title,
         description = input.description,
+        ingredients = input.ingradients,
         image = input.image,
         isFavorite = input.isFavorite
     )

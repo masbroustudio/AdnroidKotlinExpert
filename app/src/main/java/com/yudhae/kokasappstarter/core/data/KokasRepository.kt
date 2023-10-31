@@ -10,6 +10,8 @@ import com.yudhae.kokasappstarter.core.domain.model.Kokas
 import com.yudhae.kokasappstarter.core.domain.repository.IKokasRepository
 import com.yudhae.kokasappstarter.core.utils.AppExecutors
 import com.yudhae.kokasappstarter.core.utils.DataMapper
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class KokasRepository private constructor(
     private val remoteDataSource: RemoteDataSource,
@@ -31,35 +33,32 @@ class KokasRepository private constructor(
             }
     }
 
-    override fun getAllTourism(): LiveData<Resource<List<Kokas>>> =
-        object : NetworkBoundResource<List<Kokas>, List<KokasResponse>>(appExecutors) {
-            override fun loadFromDB(): LiveData<List<Kokas>> {
-                return Transformations.map(localDataSource.getAllTourism()) {
-                    DataMapper.mapEntitiesToDomain(it)
-                }
+    override fun getAllTourism(): Flow<Resource<List<Kokas>>> =
+        object : NetworkBoundResource<List<Kokas>, List<KokasResponse>>() {
+            override fun loadFromDB(): Flow<List<Kokas>> {
+                return localDataSource.getAllTourism().map { DataMapper.mapEntitiesToDomain(it) }
             }
 
             override fun shouldFetch(data: List<Kokas>?): Boolean =
                 data == null || data.isEmpty()
 
-            override fun createCall(): LiveData<ApiResponse<List<KokasResponse>>> =
+            override suspend fun createCall(): Flow<ApiResponse<List<KokasResponse>>> =
                 remoteDataSource.getAllTourism()
 
-            override fun saveCallResult(data: List<KokasResponse>) {
+            override suspend fun saveCallResult(data: List<KokasResponse>) {
                 val tourismList = DataMapper.mapResponsesToEntities(data)
                 localDataSource.insertTourism(tourismList)
             }
-        }.asLiveData()
+        }.asFlow()
 
-    override fun getFavoriteTourism(): LiveData<List<Kokas>> {
-        return Transformations.map(localDataSource.getFavoriteTourism()) {
-            DataMapper.mapEntitiesToDomain(it)
-        }
+    override fun getFavoriteTourism(): Flow<List<Kokas>> {
+        return localDataSource.getFavoriteTourism().map { DataMapper.mapEntitiesToDomain(it) }
+
     }
 
     override fun setFavoriteTourism(kokas: Kokas, state: Boolean) {
-        val tourismEntity = DataMapper.mapDomainToEntity(kokas)
-        appExecutors.diskIO().execute { localDataSource.setFavoriteTourism(tourismEntity, state) }
+        val kokasEntity = DataMapper.mapDomainToEntity(kokas)
+        appExecutors.diskIO().execute { localDataSource.setFavoriteTourism(kokasEntity, state) }
     }
 }
 

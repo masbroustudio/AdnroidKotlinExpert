@@ -5,10 +5,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 
 import com.yudhae.kokasappstarter.core.data.source.local.entity.KokasEntity
+import com.yudhae.kokasappstarter.core.utils.StringListConverter
 
 @Database(entities = [KokasEntity::class], version = 1, exportSchema = false)
+@TypeConverters(StringListConverter::class)
+
 abstract class KokasDatabase : RoomDatabase() {
 
     abstract fun tourismDao(): KokasDao

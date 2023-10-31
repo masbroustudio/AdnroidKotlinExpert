@@ -1,3 +1,10 @@
 package com.yudhae.kokasappstarter.core.data.source.remote.response
 
-class ListKokasResponse : ArrayList<KokasResponse>()
+import com.google.gson.annotations.SerializedName
+
+data class ListKokasResponse(
+//    @field:SerializedName("kokas")
+    val kokas: List<KokasResponse>
+)
+
+//class ListKokasResponse : ArrayList<KokasResponse>()
