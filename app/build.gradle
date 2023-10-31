@@ -9,7 +9,7 @@ android {
     compileSdkVersion 30
 
     defaultConfig {
-        applicationId "com.dicoding.tourismapp"
+        applicationId 'com.yudhae.kokasappstarter'
         minSdkVersion 16
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 30
@@ -41,7 +41,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    namespace 'com.dicoding.tourismapp'
+    namespace 'com.yudhae.kokasappstarter'
 }
 
 dependencies {
@@ -63,4 +63,8 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     androidTestImplementation "androidx.room:room-testing:$room_version"
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor_version"
 }
