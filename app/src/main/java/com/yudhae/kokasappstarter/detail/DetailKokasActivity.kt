@@ -3,12 +3,11 @@ package com.yudhae.kokasappstarter.detail
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.yudhae.kokasappstarter.R
 import com.yudhae.kokasappstarter.core.domain.model.Kokas
-import com.yudhae.kokasappstarter.core.ui.ViewModelFactory
 import com.yudhae.kokasappstarter.databinding.ActivityDetailTourismBinding
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class DetailKokasActivity : AppCompatActivity() {
 
@@ -16,7 +15,7 @@ class DetailKokasActivity : AppCompatActivity() {
         const val EXTRA_DATA = "extra_data"
     }
 
-    private lateinit var detailKokasViewModel: DetailKokasViewModel
+    private val detailKokasViewModel: DetailKokasViewModel by viewModel()
     private lateinit var binding: ActivityDetailTourismBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,9 +24,6 @@ class DetailKokasActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-
-        val factory = ViewModelFactory.getInstance(this)
-        detailKokasViewModel = ViewModelProvider(this, factory)[DetailKokasViewModel::class.java]
 
         val detailTourism = intent.getParcelableExtra<Kokas>(EXTRA_DATA)
         showDetailTourism(detailTourism)
@@ -53,9 +49,19 @@ class DetailKokasActivity : AppCompatActivity() {
 
     private fun setStatusFavorite(statusFavorite: Boolean) {
         if (statusFavorite) {
-            binding.fab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_white))
+            binding.fab.setImageDrawable(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.ic_favorite_white
+                )
+            )
         } else {
-            binding.fab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_not_favorite_white))
+            binding.fab.setImageDrawable(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.ic_not_favorite_white
+                )
+            )
         }
     }
 }

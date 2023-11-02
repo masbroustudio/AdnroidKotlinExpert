@@ -5,7 +5,7 @@ import com.yudhae.kokasappstarter.core.data.source.local.entity.KokasEntity
 import com.yudhae.kokasappstarter.core.data.source.local.room.KokasDao
 import io.reactivex.Flowable
 
-class LocalDataSource private constructor(private val tourismDao: KokasDao) {
+class LocalDataSource(private val tourismDao: KokasDao) {
 
     companion object {
         private var instance: LocalDataSource? = null

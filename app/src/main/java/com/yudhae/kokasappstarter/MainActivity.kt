@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.yudhae.kokasappstarter.databinding.ActivityMainBinding
-import com.dicoding.tourismapp.favorite.FavoriteFragment
+import com.yudhae.kokasappstarter.favorite.FavoriteFragment
 import com.yudhae.kokasappstarter.home.HomeFragment
 import com.google.android.material.navigation.NavigationView
 
