@@ -7,6 +7,11 @@ import com.yudhae.kokasappstarter.core.data.source.remote.network.ApiResponse
 import com.yudhae.kokasappstarter.core.data.source.remote.network.ApiService
 import com.yudhae.kokasappstarter.core.data.source.remote.response.KokasResponse
 import com.yudhae.kokasappstarter.core.data.source.remote.response.ListKokasResponse
+import io.reactivex.BackpressureStrategy
+import io.reactivex.Flowable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import io.reactivex.subjects.PublishSubject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,30 +27,26 @@ class RemoteDataSource private constructor(private val apiService: ApiService) {
             }
     }
 
-    fun getAllTourism(): LiveData<ApiResponse<List<KokasResponse>>> {
-        val resultData = MutableLiveData<ApiResponse<List<KokasResponse>>>()
+    fun getAllTourism(): Flowable<ApiResponse<List<KokasResponse>>> {
+        val resultData = PublishSubject.create<ApiResponse<List<KokasResponse>>>()
 
-        //get data from local json
+        // Get data from remote api
         val client = apiService.getList()
 
+        client
+            .subscribeOn(Schedulers.computation())
+            .observeOn(AndroidSchedulers.mainThread())
+            .take(1)
+            .subscribe ({ response ->
+                val dataArray = response.toList()
+                resultData.onNext(if (dataArray.isNotEmpty()) ApiResponse.Success(dataArray) else ApiResponse.Empty)
+            }, { error ->
+                resultData.onNext(ApiResponse.Error(error.message.toString()))
+                Log.e("RemoteDataSource", error.toString())
+            })
 
-        client.enqueue(object : Callback<ListKokasResponse> {
-            override fun onResponse(
-                call: Call<ListKokasResponse>,
-                response: Response<ListKokasResponse>
-            ) {
-                val dataArray = response.body()
-                resultData.value =
-                    if (dataArray != null) ApiResponse.Success(dataArray) else ApiResponse.Empty
-            }
-
-            override fun onFailure(call: Call<ListKokasResponse>, t: Throwable) {
-                resultData.value = ApiResponse.Error(t.message.toString())
-                Log.e("RemoteDataSource", t.message.toString())
-            }
-        })
-
-        return resultData
+        return resultData.toFlowable(BackpressureStrategy.BUFFER)
     }
+
 }
 

@@ -10,6 +10,9 @@ import com.yudhae.kokasappstarter.core.domain.model.Kokas
 import com.yudhae.kokasappstarter.core.domain.repository.IKokasRepository
 import com.yudhae.kokasappstarter.core.utils.AppExecutors
 import com.yudhae.kokasappstarter.core.utils.DataMapper
+import io.reactivex.Flowable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class KokasRepository private constructor(
     private val remoteDataSource: RemoteDataSource,
@@ -31,30 +34,29 @@ class KokasRepository private constructor(
             }
     }
 
-    override fun getAllTourism(): LiveData<Resource<List<Kokas>>> =
-        object : NetworkBoundResource<List<Kokas>, List<KokasResponse>>(appExecutors) {
-            override fun loadFromDB(): LiveData<List<Kokas>> {
-                return Transformations.map(localDataSource.getAllTourism()) {
-                    DataMapper.mapEntitiesToDomain(it)
-                }
+    override fun getAllTourism(): Flowable<Resource<List<Kokas>>> =
+        object : NetworkBoundResource<List<Kokas>, List<KokasResponse>>() {
+            override fun loadFromDB(): Flowable<List<Kokas>> {
+                return localDataSource.getAllTourism().map { DataMapper.mapEntitiesToDomain(it) }
             }
 
             override fun shouldFetch(data: List<Kokas>?): Boolean =
                 data == null || data.isEmpty()
 
-            override fun createCall(): LiveData<ApiResponse<List<KokasResponse>>> =
+            override fun createCall(): Flowable<ApiResponse<List<KokasResponse>>> =
                 remoteDataSource.getAllTourism()
 
             override fun saveCallResult(data: List<KokasResponse>) {
                 val tourismList = DataMapper.mapResponsesToEntities(data)
                 localDataSource.insertTourism(tourismList)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe()
             }
-        }.asLiveData()
+        }.asFlowable()
 
-    override fun getFavoriteTourism(): LiveData<List<Kokas>> {
-        return Transformations.map(localDataSource.getFavoriteTourism()) {
-            DataMapper.mapEntitiesToDomain(it)
-        }
+    override fun getFavoriteTourism(): Flowable<List<Kokas>> {
+        return localDataSource.getFavoriteTourism().map { DataMapper.mapEntitiesToDomain(it) }
     }
 
     override fun setFavoriteTourism(kokas: Kokas, state: Boolean) {
