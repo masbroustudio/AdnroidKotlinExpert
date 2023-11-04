@@ -9,6 +9,6 @@ data class Kokas(
     val title: String,
     val description: String,
     val image: String,
-    var ingradients: List<String?>,
+    var ingradients: String,
     val isFavorite: Boolean
 ) : Parcelable

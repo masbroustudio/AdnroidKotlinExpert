@@ -13,7 +13,7 @@ data class KokasResponse(
     val description: String,
 
     @field:SerializedName("ingredients")
-    val ingredients: List<String?>,
+    val ingredients: String,
 
     @field:SerializedName("image")
     val image: String

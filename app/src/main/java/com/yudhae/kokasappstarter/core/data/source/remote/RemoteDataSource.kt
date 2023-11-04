@@ -26,12 +26,12 @@ class RemoteDataSource private constructor(private val apiService: ApiService) {
             try {
                 val response = apiService.getList()
                 val dataArray = response.kokas
-                if (dataArray.isNotEmpty()){
+                if (dataArray.isNotEmpty()) {
                     emit(ApiResponse.Success(response.kokas))
                 } else {
                     emit(ApiResponse.Empty)
                 }
-            } catch (e : Exception){
+            } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))
                 Log.e("RemoteDataSource", e.toString())
             }

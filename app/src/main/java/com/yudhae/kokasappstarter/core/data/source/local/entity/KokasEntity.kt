@@ -19,7 +19,7 @@ data class KokasEntity(
     var description: String,
 
     @ColumnInfo(name = "ingredients")
-    var ingredients: List<String?>,
+    var ingredients: String,
 
     @ColumnInfo(name = "image")
     var image: String,
