@@ -9,10 +9,11 @@ plugins {
 apply from: '../shared_dependencies.gradle'
 
 android {
+    namespace = "com.yudhae.kokassubexpert01"
     compileSdkVersion 30
 
     defaultConfig {
-        applicationId "com.dicoding.tourismapp"
+        applicationId "com.yudhae.kokassubexpert01"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
@@ -29,17 +30,16 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
 
     buildFeatures {
         viewBinding = true
     }
-    namespace 'com.dicoding.tourismapp'
 }
 
 dependencies {

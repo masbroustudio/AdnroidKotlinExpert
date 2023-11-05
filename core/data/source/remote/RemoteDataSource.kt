@@ -1,8 +1,8 @@
-package com.dicoding.tourismapp.core.data.source.remote
+package com.yudhae.kokassubexpert01.core.data.source.remote
 
-import com.dicoding.tourismapp.core.data.source.remote.network.ApiResponse
-import com.dicoding.tourismapp.core.data.source.remote.network.ApiService
-import com.dicoding.tourismapp.core.data.source.remote.response.TourismResponse
+import com.yudhae.kokassubexpert01.core.data.source.remote.network.ApiResponse
+import com.yudhae.kokassubexpert01.core.data.source.remote.network.ApiService
+import com.yudhae.kokassubexpert01.core.data.source.remote.response.TourismResponse
 import io.reactivex.BackpressureStrategy
 import io.reactivex.subjects.PublishSubject
 import kotlinx.coroutines.Dispatchers

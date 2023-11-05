@@ -1,9 +1,9 @@
-package com.dicoding.tourismapp.core.di.hilt
+package com.yudhae.kokassubexpert01.core.di.hilt
 
 import android.content.Context
 import androidx.room.Room
-import com.dicoding.tourismapp.core.data.source.local.room.TourismDao
-import com.dicoding.tourismapp.core.data.source.local.room.TourismDatabase
+import com.yudhae.kokassubexpert01.core.data.source.local.room.TourismDao
+import com.yudhae.kokassubexpert01.core.data.source.local.room.TourismDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

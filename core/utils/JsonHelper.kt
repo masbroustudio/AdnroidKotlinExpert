@@ -1,8 +1,8 @@
-package com.dicoding.tourismapp.core.utils
+package com.yudhae.kokassubexpert01.core.utils
 
 import android.content.Context
-import com.dicoding.tourismapp.R
-import com.dicoding.tourismapp.core.data.source.remote.response.TourismResponse
+import com.yudhae.kokassubexpert01.R
+import com.yudhae.kokassubexpert01.core.data.source.remote.response.TourismResponse
 import org.json.JSONObject
 import java.io.IOException
 

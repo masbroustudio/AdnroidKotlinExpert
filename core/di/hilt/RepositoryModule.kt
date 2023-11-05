@@ -1,7 +1,7 @@
-package com.dicoding.tourismapp.core.di.hilt
+package com.yudhae.kokassubexpert01.core.di.hilt
 
-import com.dicoding.tourismapp.core.data.TourismRepository
-import com.dicoding.tourismapp.core.domain.repository.ITourismRepository
+import com.yudhae.kokassubexpert01.core.data.TourismRepository
+import com.yudhae.kokassubexpert01.core.domain.repository.ITourismRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

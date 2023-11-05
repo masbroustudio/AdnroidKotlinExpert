@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'kotlin-android-extensions'
@@ -37,7 +36,7 @@ android {
     buildFeatures{
         viewBinding = true
     }
-    namespace 'com.septalfauzan.core'
+    namespace 'com.kokassubexpert01.core'
 }
 
 dependencies {

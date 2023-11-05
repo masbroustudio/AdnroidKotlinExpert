@@ -1,9 +1,9 @@
-package com.dicoding.tourismapp.core.domain.usecase
+package com.yudhae.kokassubexpert01.core.domain.usecase
 
 import androidx.lifecycle.LiveData
-import com.dicoding.tourismapp.core.data.Resource
-import com.dicoding.tourismapp.core.domain.model.Tourism
-import com.dicoding.tourismapp.core.domain.repository.ITourismRepository
+import com.yudhae.kokassubexpert01.core.data.Resource
+import com.yudhae.kokassubexpert01.core.domain.model.Tourism
+import com.yudhae.kokassubexpert01.core.domain.repository.ITourismRepository
 import io.reactivex.Flowable
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

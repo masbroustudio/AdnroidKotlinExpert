@@ -1,8 +1,8 @@
-package com.dicoding.tourismapp.core.data
+package com.yudhae.kokassubexpert01.core.data
 
-import com.dicoding.tourismapp.core.data.source.remote.network.ApiResponse
+import com.yudhae.kokassubexpert01.core.data.source.remote.network.ApiResponse
 
-import com.dicoding.tourismapp.core.utils.AppExecutors
+import com.yudhae.kokassubexpert01.core.utils.AppExecutors
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.flow.*
 

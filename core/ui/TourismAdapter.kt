@@ -1,14 +1,14 @@
-package com.dicoding.tourismapp.core.ui
+package com.yudhae.kokassubexpert01.core.ui
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.dicoding.tourismapp.R
-import com.dicoding.tourismapp.core.data.source.local.entity.TourismEntity
-import com.dicoding.tourismapp.core.domain.model.Tourism
-import com.dicoding.tourismapp.databinding.ItemListTourismBinding
+import com.yudhae.kokassubexpert01.R
+import com.yudhae.kokassubexpert01.core.data.source.local.entity.TourismEntity
+import com.yudhae.kokassubexpert01.core.domain.model.Tourism
+import com.yudhae.kokassubexpert01.databinding.ItemListTourismBinding
 import java.util.ArrayList
 
 class TourismAdapter : RecyclerView.Adapter<TourismAdapter.ListViewHolder>() {

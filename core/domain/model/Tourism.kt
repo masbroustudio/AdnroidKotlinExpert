@@ -1,4 +1,4 @@
-package com.dicoding.tourismapp.core.domain.model
+package com.yudhae.kokassubexpert01.core.domain.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

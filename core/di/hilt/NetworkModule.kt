@@ -1,6 +1,6 @@
-package com.dicoding.tourismapp.core.di.hilt
+package com.yudhae.kokassubexpert01.core.di.hilt
 
-import com.dicoding.tourismapp.core.data.source.remote.network.ApiService
+import com.yudhae.kokassubexpert01.core.data.source.remote.network.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
