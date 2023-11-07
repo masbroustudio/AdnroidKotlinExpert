@@ -1,7 +1,7 @@
 package com.kokassubexpert01.core.utils
 
 import android.content.Context
-import com.kokassubexpert01.core.data.source.remote.response.TourismResponse
+import com.kokassubexpert01.core.data.source.remote.response.KokasResponse
 import com.kokassubexpert01.core.R
 import org.json.JSONObject
 import java.io.IOException
@@ -20,8 +20,8 @@ class JsonHelper(private val context: Context) {
         return jsonString
     }
 
-    fun loadData(): List<TourismResponse> {
-        val list = ArrayList<TourismResponse>()
+    fun loadData(): List<KokasResponse> {
+        val list = ArrayList<KokasResponse>()
         val responseObject = JSONObject(parsingFileToString().toString())
         val listArray = responseObject.getJSONArray("places")
         for (i in 0 until listArray.length()) {
@@ -33,7 +33,7 @@ class JsonHelper(private val context: Context) {
             val ingredients = course.getString("ingredients")
             val image = course.getString("image")
 
-            val courseResponse = TourismResponse(
+            val courseResponse = KokasResponse(
                 id = id,
                 title = name,
                 description = description,

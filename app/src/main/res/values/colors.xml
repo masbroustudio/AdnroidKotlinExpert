@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorPrimary">#875814</color>
+    <color name="colorSoftDark">#7C633F</color>
+    <color name="colorSoftDark_02">#FFDEA7</color>
+    <color name="colorlight">#CDCDCD</color>
+    <color name="colorPrimaryTrans">#4D9E6400</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_500">#FF009688</color>
     <color name="teal_700">#FF018786</color>

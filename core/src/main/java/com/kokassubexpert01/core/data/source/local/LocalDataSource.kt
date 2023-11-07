@@ -1,22 +1,22 @@
 package com.kokassubexpert01.core.data.source.local
 
-import com.kokassubexpert01.core.data.source.local.entity.TourismEntity
-import com.kokassubexpert01.core.data.source.local.room.TourismDao
+import com.kokassubexpert01.core.data.source.local.entity.KokasEntity
+import com.kokassubexpert01.core.data.source.local.room.KokasDao
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class LocalDataSource @Inject constructor(private val tourismDao: TourismDao) {
-    fun getAllTourism(): Flow<List<TourismEntity>> = tourismDao.getAllTourism()
+class LocalDataSource @Inject constructor(private val kokasDao: KokasDao) {
+    fun getAllKokas(): Flow<List<KokasEntity>> = kokasDao.getAllKokas()
 
-    fun getFavoriteTourism(): Flow<List<TourismEntity>> = tourismDao.getFavoriteTourism()
+    fun getFavoriteKokas(): Flow<List<KokasEntity>> = kokasDao.getFavoriteKokas()
 
-    suspend fun insertTourism(tourismList: List<TourismEntity>) =
-        tourismDao.insertTourism(tourismList)
+    suspend fun insertKokas(kokasList: List<KokasEntity>) =
+        kokasDao.insertKokas(kokasList)
 
-    fun setFavoriteTourism(tourism: TourismEntity, newState: Boolean) {
-        tourism.isFavorite = newState
-        tourismDao.updateFavoriteTourism(tourism)
+    fun setFavoriteKokas(kokas: KokasEntity, newState: Boolean) {
+        kokas.isFavorite = newState
+        kokasDao.updateFavoriteKokas(kokas)
     }
 }

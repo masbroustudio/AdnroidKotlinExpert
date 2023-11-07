@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Kokas SubExpert</string>
+    <string name="app_name">KOKAS (Kopilikasi)</string>
     <string name="image_description">Image</string>
     <string name="text_primary">Sample of title text</string>
     <string name="text_subtitle">Sample of subtitle text</string>
@@ -14,4 +14,18 @@
     <string name="title_activity_detail_home">DetailHomeActivity</string>
     <string name="no_data">Empty data</string>
     <string name="something_wrong">Oops.. something went wrong</string>
+    <string name="navigation_header_logo">Navigation Header Logo</string>
+    <string name="kopilikasi_app_submission">Kopilikasi App (Submission)</string>
+    <string name="kopilkasi_contact">+6287772210948</string>
+    <string name="menu_minuman">Menu Minuman</string>
+    <string name="menu_makanan">Menu Makanan</string>
+    <string name="login_register">Login/Register</string>
+    <string name="menu_header_info">Menu Header Info</string>
+    <string name="menu_header_user">Menu Header User</string>
+    <string name="created_by">Created by</string>
+    <string name="contact_me_email">yudhae@gmail.com</string>
+    <string name="creator_info">Yudha Elfransyah</string>
+    <string name="github_info_link">Github Info Link</string>
+    <string name="store_info_detail">Opsi layanan: Makan di tempat · Drive-through · Pesan antar       Alamat: Jalan Baru, Blk. Sawah, Kec. Kota Sigli, Kabupaten Pidie, Aceh 24114        Jam Buka : 08.00 WIB        Tutup pukul 01.00        Telepon: 0877-7221-0948</string>
+    <string name="btn_oke">Oke</string>
 </resources>

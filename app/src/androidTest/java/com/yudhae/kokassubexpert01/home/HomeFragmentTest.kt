@@ -1,8 +1,8 @@
 //package com.yudhae.kokassubexpert01.home
 //
-//import com.kokassubexpert01.core.data.TourismRepository
+//import com.kokassubexpert01.core.data.KokasRepository
 //import com.yudhae.kokassubexpert01.core.di.*
-//import com.kokassubexpert01.core.domain.model.Tourism
+//import com.kokassubexpert01.core.domain.model.Kokas
 //import org.junit.After
 //import org.junit.Before
 //import org.junit.Test
@@ -13,8 +13,8 @@
 //import kotlin.test.assertNotNull
 //
 //class HomeFragmentTest : KoinTest {
-//    private val repository: TourismRepository by inject()
-//    private val dummyData = Tourism(
+//    private val repository: KokasRepository by inject()
+//    private val dummyData = Kokas(
 //        tourismId = "-",
 //        name = "gemah",
 //        description = "-",

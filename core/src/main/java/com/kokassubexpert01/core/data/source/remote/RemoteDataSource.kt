@@ -2,7 +2,7 @@ package com.kokassubexpert01.core.data.source.remote
 
 import com.kokassubexpert01.core.data.source.remote.network.ApiResponse
 import com.kokassubexpert01.core.data.source.remote.network.ApiService
-import com.kokassubexpert01.core.data.source.remote.response.TourismResponse
+import com.kokassubexpert01.core.data.source.remote.response.KokasResponse
 import io.reactivex.subjects.PublishSubject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -12,8 +12,8 @@ import javax.inject.Singleton
 
 @Singleton
 class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
-    suspend fun getAllTourism(): Flow<ApiResponse<List<TourismResponse>>> {
-        val resultData = PublishSubject.create<ApiResponse<List<TourismResponse>>>()
+    suspend fun getAllKokas(): Flow<ApiResponse<List<KokasResponse>>> {
+        val resultData = PublishSubject.create<ApiResponse<List<KokasResponse>>>()
 
 
         return flow{
@@ -40,16 +40,16 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
 //                resultData.onNext(ApiResponse.Error(error.message.toString()))
 //            })
 
-//        client.enqueue(object: Callback<ListTourismResponse> {
+//        client.enqueue(object: Callback<ListKokasResponse> {
 //            override fun onResponse(
-//                call: Call<ListTourismResponse>,
-//                response: Response<ListTourismResponse>
+//                call: Call<ListKokasResponse>,
+//                response: Response<ListKokasResponse>
 //            ) {
 //                val dataArray = response.body()?.places
 //                resultData.value = if(dataArray != null) ApiResponse.Success(dataArray) else ApiResponse.Empty
 //            }
 //
-//            override fun onFailure(call: Call<ListTourismResponse>, t: Throwable) {
+//            override fun onFailure(call: Call<ListKokasResponse>, t: Throwable) {
 //                resultData.value = ApiResponse.Error(t.message.toString())
 //                Log.e("RemoteDataSource", t.message.toString())
 //            }

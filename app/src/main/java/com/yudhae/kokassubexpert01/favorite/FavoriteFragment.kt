@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.kokassubexpert01.core.ui.TourismAdapter
+import com.kokassubexpert01.core.ui.KokasAdapter
 import com.yudhae.kokassubexpert01.databinding.FragmentFavoriteBinding
-import com.yudhae.kokassubexpert01.detail.DetailTourismActivity
+import com.yudhae.kokassubexpert01.detail.DetailKokasActivity
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.disposables.CompositeDisposable
 
@@ -35,22 +35,22 @@ class FavoriteFragment : Fragment() {
 
         if (activity != null) {
 
-            val tourismAdapter = TourismAdapter()
-            tourismAdapter.onItemClick = { selectedData ->
-                val intent = Intent(activity, DetailTourismActivity::class.java)
-                intent.putExtra(DetailTourismActivity.EXTRA_DATA, selectedData)
+            val kokasAdapter = KokasAdapter()
+            kokasAdapter.onItemClick = { selectedData ->
+                val intent = Intent(activity, DetailKokasActivity::class.java)
+                intent.putExtra(DetailKokasActivity.EXTRA_DATA, selectedData)
                 startActivity(intent)
             }
 
-            favoriteViewModel.favoriteTourism.observe(viewLifecycleOwner) { dataTourism ->
-                tourismAdapter.setData(dataTourism)
+            favoriteViewModel.favoriteTourism.observe(viewLifecycleOwner) { dataKokas ->
+                kokasAdapter.setData(dataKokas)
                 binding.viewEmpty.root.visibility =
-                    if (dataTourism.isNotEmpty()) View.GONE else View.VISIBLE
+                    if (dataKokas.isNotEmpty()) View.GONE else View.VISIBLE
             }
-            with(binding.rvTourism) {
+            with(binding.rvKokas) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
-                adapter = tourismAdapter
+                adapter = kokasAdapter
             }
         }
     }

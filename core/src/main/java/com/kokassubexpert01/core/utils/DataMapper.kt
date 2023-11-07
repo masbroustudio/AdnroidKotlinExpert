@@ -1,14 +1,14 @@
 package com.kokassubexpert01.core.utils
 
-import com.kokassubexpert01.core.data.source.local.entity.TourismEntity
-import com.kokassubexpert01.core.data.source.remote.response.TourismResponse
-import com.kokassubexpert01.core.domain.model.Tourism
+import com.kokassubexpert01.core.data.source.local.entity.KokasEntity
+import com.kokassubexpert01.core.data.source.remote.response.KokasResponse
+import com.kokassubexpert01.core.domain.model.Kokas
 
 object DataMapper {
-    fun mapResponsesToEntities(input: List<TourismResponse>): List<TourismEntity> {
-        val tourismList = ArrayList<TourismEntity>()
+    fun mapResponsesToEntities(input: List<KokasResponse>): List<KokasEntity> {
+        val tourismList = ArrayList<KokasEntity>()
         input.map {
-            val tourism = TourismEntity(
+            val tourism = KokasEntity(
                 kokasId = it.id,
                 description = it.description,
                 title = it.title,
@@ -21,8 +21,8 @@ object DataMapper {
         return tourismList
     }
 
-    fun mapEntitiesToDomain(input: List<TourismEntity>) : List<Tourism> = input.map{
-        Tourism(
+    fun mapEntitiesToDomain(input: List<KokasEntity>) : List<Kokas> = input.map{
+        Kokas(
             kokasId = it.kokasId,
             title = it.title,
             description = it.description,
@@ -32,7 +32,7 @@ object DataMapper {
         )
     }
 
-    fun mapDomainToEntity(input: Tourism) = TourismEntity(
+    fun mapDomainToEntity(input: Kokas) = KokasEntity(
         kokasId = input.kokasId,
         title = input.title,
         description = input.description,
