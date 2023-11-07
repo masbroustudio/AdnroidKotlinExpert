@@ -1,0 +1,3 @@
+rootProject.name='Kokas Subexpert'
+include ':app'
+include ':core'
